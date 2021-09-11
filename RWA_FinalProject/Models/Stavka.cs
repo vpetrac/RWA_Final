@@ -8,11 +8,11 @@ namespace RWA_FinalProject.Models
     public class Stavka
     {
         public int IDStavka { get; set; }
-        public Racun Racun { get; set; }
-        public int Kolicina { get; set; }
+        public int RacunID { get; set; }
+        public short Kolicina { get; set; }
         public Proizvod Proizvod { get; set; }
-        public double CijenaPoKomadu { get; set; }
-        public double PopustUPostotcima { get; set; }
-        public double UkupnaCijena { get; set; }
+        public decimal CijenaPoKomadu { get; set; }
+        public decimal PopustUPostotcima { get; set; }
+        public decimal UkupnaCijena { get; set; }
     }
 }

@@ -10,15 +10,15 @@ namespace RWA_FinalProject.Models
     {
         public int IDKupac { get; set; }
         [Required(ErrorMessage = "Ime je obvezno")]
-        public int Ime { get; set; }
+        public string Ime { get; set; }
         [Required(ErrorMessage = "Prezime je obvezno")]
-        public int Prezime { get; set; }
-        [EmailAddress(ErrorMessage = "Ime je obvezno")]
-        public int Email { get; set; }
-        public int Telefon { get; set; }
+        public string Prezime { get; set; }
+        [EmailAddress(ErrorMessage = "Email je obvezan")]
+        public string Email { get; set; }
+        public string Telefon { get; set; }
         [Display(Name = "Grad")]
         [Required(ErrorMessage = "Niste odabrali grad")]
-        public Grad Grad { get; set; }
+        public int GradID { get; set; }
         
         public string PunoIme
         {

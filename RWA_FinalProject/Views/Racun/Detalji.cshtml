@@ -1,0 +1,27 @@
+﻿@model RWA_FinalProject.Models.vm.VMRacunStavke
+@model RWA_FinalProject.Models.Racun
+@model RWA_FinalProject.Models.Stavka
+
+
+@{
+    ViewBag.Title = "Detalji";
+}
+
+@{
+
+    Racun racun = ViewData["Racun"] as Racun racun
+    IEnumerable<Stavka> stavke = ViewData["Stavke"] as IEnumerable<Stavka>;
+}
+
+<h2>Detalji</h2>
+
+<div>
+    <h4>VMRacunStavke</h4>
+    <hr />
+    <dl class="dl-horizontal">
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

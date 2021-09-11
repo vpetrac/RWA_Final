@@ -10,7 +10,7 @@ namespace RWA_FinalProject.Models
     {
         public int IDKategorija { get; set; }
         [Required(ErrorMessage = "Naziv kategorije je obvezan")]
-        public int Naziv { get; set; }
+        public string Naziv { get; set; }
       
   
     }

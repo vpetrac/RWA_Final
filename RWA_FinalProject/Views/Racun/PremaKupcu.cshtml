@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "Popis računa kupca";
+}
+
+<h2>Popis računa kupca</h2>
+
+<div class="jumbotron">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>IDRacun</th>
+                <th>DatumIzdavanja</th>
+                <th>Broj računa</th>
+                <th>Komercijalist</th>
+                <th>Kreditna kartica</th>
+                <th>Komentar</th>
+                <th></th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+@section scripts {
+    <script>
+
+        const dataTableConfig = {
+
+            ajax: {
+                url: '/api/racuniKupca/' + @ViewBag.ID,
+                dataSrc: ''
+            },
+            columns: [
+                { data: 'IDRacun' },
+                { data: 'DatumIzdavanja' },
+                { data: 'BrojRacuna' },
+                { data: 'KomercijalistID' },
+                { data: 'KreditnaKarticaID' },
+                { data: 'Komentar' },
+
+                {
+                    data: '',
+                    render: function (data, type, racun) {
+                        var link =  `@Html.ActionLink("Detalji", "Detalji", "Racun", new { id = -1 }, new { @class = "btn btn-primary btn-sm"})`;
+                        return link.replace('-1', racun.IDRacun);
+                    }
+                }
+
+            ]
+        }
+
+        const table = $('.table')
+            .DataTable(dataTableConfig);
+
+
+
+    </script>
+}

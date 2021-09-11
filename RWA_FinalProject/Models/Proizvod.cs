@@ -9,10 +9,10 @@ namespace RWA_FinalProject.Models
     {
         public int IDProizvod { get; set; }
         public string Naziv { get; set; }
-        public int BrojProizvoda { get; set; }
+        public string BrojProizvoda { get; set; }
         public string Boja { get; set; }
-        public int MinimalnaKolicinaNaKladistu { get; set; }
-        public double CijenaBezPDV { get; set; }
+        public short MinimalnaKolicinaNaSkladistu { get; set; }
+        public decimal CijenaBezPDV { get; set; }
         public Podkategorija Podkategorija { get; set; }
 
     }

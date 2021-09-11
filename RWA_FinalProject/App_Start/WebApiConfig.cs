@@ -19,6 +19,15 @@ namespace RWA_FinalProject
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            SetJSONReturnType(config);
+        }
+
+        private static void SetJSONReturnType(HttpConfiguration config)
+        {
+            var xmlType = config.Formatters.XmlFormatter.SupportedMediaTypes.FirstOrDefault(mt => mt.MediaType == "application/xml");
+
+            config.Formatters.XmlFormatter.SupportedMediaTypes.Remove(xmlType);
         }
     }
 }

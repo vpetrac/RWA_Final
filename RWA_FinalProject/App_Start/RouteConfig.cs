@@ -18,6 +18,13 @@ namespace RWA_FinalProject
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+               name: "PopisRacunaKupca",
+               url: "{controller}/{action}/{id}",
+               defaults: new { controller = "PopisRacunaKupca", action = "Show", id = UrlParameter.Optional }
+           );
+
         }
     }
 }

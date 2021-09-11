@@ -8,8 +8,9 @@ namespace RWA_FinalProject.Models
 {
     public class Podkategorija
     {
-        public int IDPodkategorija { get; set; }
+        public int IDPotkategorija { get; set; }
         [Required(ErrorMessage = "Naziv kategorije je obvezan")]
-        public int Naziv { get; set; }
+        public string Naziv { get; set; }
+        public int KategorijaID { get; set; }
     }
 }
