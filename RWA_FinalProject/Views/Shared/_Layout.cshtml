@@ -30,7 +30,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="#">Stavke</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Kategorije</a>
+                            @Html.ActionLink("Kategorije", "Index", "Kategorije", null, new { @class = "dropdown-item" })
                             <a class="dropdown-item" href="#">Potkategorije</a>
                         </div>
                     </li>

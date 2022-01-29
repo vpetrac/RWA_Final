@@ -9,5 +9,12 @@ namespace RWA_FinalProject.Models.vm
     {
         public Racun Racun { get; set; }
         public IEnumerable<Stavka> Stavke { get; set; }
+
+        public VMRacunStavke(int racunId)
+        {
+           Racun = Repo.GetRacun(racunId);
+           Stavke = Repo.GetStavke(racunId);
+
+        }
     }
 }

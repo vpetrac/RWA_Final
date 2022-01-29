@@ -1,27 +1,117 @@
 ﻿@model RWA_FinalProject.Models.vm.VMRacunStavke
-@model RWA_FinalProject.Models.Racun
-@model RWA_FinalProject.Models.Stavka
-
 
 @{
     ViewBag.Title = "Detalji";
 }
 
-@{
-
-    Racun racun = ViewData["Racun"] as Racun racun
-    IEnumerable<Stavka> stavke = ViewData["Stavke"] as IEnumerable<Stavka>;
-}
-
 <h2>Detalji</h2>
 
+
 <div>
-    <h4>VMRacunStavke</h4>
+    <h4>Racun</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Racun.IDRacun)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Racun.IDRacun)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Racun.DatumIzdavanja)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Racun.DatumIzdavanja)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Racun.BrojRacuna)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Racun.BrojRacuna)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Racun.Komentar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Racun.Komentar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Racun.KreditnaKarticaID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Racun.KreditnaKarticaID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Racun.KomercijalistID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Racun.KomercijalistID)
+        </dd>
+
     </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     @Html.ActionLink("Back to List", "Index")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Stavke.First().IDStavka)
+        </th>
+    
+        <th>
+            @Html.DisplayNameFor(model => model.Stavke.First().Kolicina)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Stavke.First().CijenaPoKomadu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Stavke.First().PopustUPostotcima)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Stavke.First().UkupnaCijena)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Stavke)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IDStavka)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kolicina)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CijenaPoKomadu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PopustUPostotcima)%
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UkupnaCijena) kn
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+
+</table>
+<p>
+    @Html.ActionLink("Create New", "Create")
 </p>

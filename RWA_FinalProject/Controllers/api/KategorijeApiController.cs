@@ -9,12 +9,11 @@ using System.Web.Http;
 
 namespace RWA_FinalProject.Controllers
 {
-    public class KategorijeController : ApiController
+    public class KategorijeApiController : ApiController
     {
         public IHttpActionResult GetKategorije()
         {
             var kategorije = Repo.GetKategorije();
-            //var kupciDto = AutoMapperConfig.Mapper.Map<IEnumerable<KupacDto>>(kupci);
             return Ok(kategorije);
         }
 

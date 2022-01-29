@@ -1,4 +1,5 @@
 ﻿using RWA_FinalProject.Models;
+using RWA_FinalProject.Models.vm;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
@@ -19,9 +20,9 @@ namespace RWA_FinalProject.Controllers
         // GET: Racun/Detalji/5
         public ActionResult Detalji(int id)
         {
-            ViewData["Racun"] = Repo.GetRacun(id);
-            ViewData["Stavke"] = Repo.GetStavke(id);
-            return View();
+            VMRacunStavke racunStavke = new VMRacunStavke(id);
+            return View(racunStavke);
+            
         }
 
         public ActionResult PremaKupcu(int id)
@@ -29,6 +30,7 @@ namespace RWA_FinalProject.Controllers
             ViewBag.ID = id;
             return View();
         }
+
 
         
     }
