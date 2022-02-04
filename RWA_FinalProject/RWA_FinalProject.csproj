@@ -203,7 +203,6 @@
     <Compile Include="Controllers\api\PotkategorijeController.cs" />
     <Compile Include="Controllers\api\RacuniKupcaController.cs" />
     <Compile Include="Controllers\RacunController.cs" />
-    <Compile Include="Controllers\StavkeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
