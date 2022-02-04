@@ -8,7 +8,7 @@ using System.Web.Http;
 
 namespace RWA_FinalProject.Controllers.api
 {
-    public class ProizvodiController : ApiController
+    public class ProizvodiApiController : ApiController
     {
         [HttpGet]
         public IHttpActionResult GetProizvodi()

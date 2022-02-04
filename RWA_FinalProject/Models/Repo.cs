@@ -31,6 +31,11 @@ namespace RWA_FinalProject.Models
 
         }
 
+        internal static object GetProizvod()
+        {
+            throw new NotImplementedException();
+        }
+
         public static Kupac GetKupac(int IDKupac)
         {
             return GetKupci().Single(k => k.IDKupac == IDKupac);

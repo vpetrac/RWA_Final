@@ -192,7 +192,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\api\DrzaveController.cs" />
     <Compile Include="Controllers\api\GradoviController.cs" />
-    <Compile Include="Controllers\api\ProizvodiController.cs" />
+    <Compile Include="Controllers\api\ProizvodiApiController.cs" />
     <Compile Include="Controllers\api\StavkeRacunaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\api\KategorijeApiController.cs" />
@@ -202,6 +202,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\api\PotkategorijeController.cs" />
     <Compile Include="Controllers\api\RacuniKupcaController.cs" />
+    <Compile Include="Controllers\ProizvodiController.cs" />
     <Compile Include="Controllers\RacunController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -634,6 +635,7 @@
     <Content Include="Views\Racun\DetailsPartial.cshtml" />
     <Content Include="Views\Racun\StavkaDetailsPartial.cshtml" />
     <Content Include="Views\Kategorije\Index.cshtml" />
+    <Content Include="Views\Proizvodi\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
