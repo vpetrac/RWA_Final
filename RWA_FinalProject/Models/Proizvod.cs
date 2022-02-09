@@ -13,7 +13,7 @@ namespace RWA_FinalProject.Models
         public string Boja { get; set; }
         public short MinimalnaKolicinaNaSkladistu { get; set; }
         public decimal CijenaBezPDV { get; set; }
-        public Podkategorija Podkategorija { get; set; }
+        public Potkategorija Podkategorija { get; set; }
 
     }
 }

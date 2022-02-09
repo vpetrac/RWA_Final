@@ -192,18 +192,18 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\api\DrzaveController.cs" />
     <Compile Include="Controllers\api\GradoviController.cs" />
-    <Compile Include="Controllers\api\ProizvodiApiController.cs" />
+    <Compile Include="Controllers\api\ProizvodiController.cs" />
     <Compile Include="Controllers\api\StavkeRacunaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\api\KategorijeApiController.cs" />
     <Compile Include="Controllers\KategorijeController.cs" />
-    <Compile Include="Controllers\ManageKategorijeController.cs" />
     <Compile Include="Controllers\KupciController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\api\PotkategorijeController.cs" />
     <Compile Include="Controllers\api\RacuniKupcaController.cs" />
+    <Compile Include="Controllers\PotkategorijeController.cs" />
     <Compile Include="Controllers\ProizvodiController.cs" />
     <Compile Include="Controllers\RacunController.cs" />
+    <Compile Include="Controllers\StavkeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -217,11 +217,12 @@
     <Compile Include="Models\KreditnaKartica.cs" />
     <Compile Include="Models\Kupac.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Podkategorija.cs" />
+    <Compile Include="Models\Potkategorija.cs" />
     <Compile Include="Models\Proizvod.cs" />
     <Compile Include="Models\Racun.cs" />
     <Compile Include="Models\Repo.cs" />
     <Compile Include="Models\Stavka.cs" />
+    <Compile Include="Models\vm\VMKategorijePotkategorije.cs" />
     <Compile Include="Models\vm\VMRacunStavke.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -630,18 +631,18 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Racun\PremaKupcu.cshtml" />
-    <Content Include="Views\ManageKategorije\List.cshtml" />
     <Content Include="Views\Racun\Detalji.cshtml" />
-    <Content Include="Views\Racun\DetailsPartial.cshtml" />
-    <Content Include="Views\Racun\StavkaDetailsPartial.cshtml" />
     <Content Include="Views\Kategorije\Index.cshtml" />
+    <Content Include="Views\Kategorije\Create.cshtml" />
+    <Content Include="Views\Kategorije\Edit.cshtml" />
+    <Content Include="Views\Kategorije\Details.cshtml" />
+    <Content Include="Views\Potkategorije\Create.cshtml" />
     <Content Include="Views\Proizvodi\Index.cshtml" />
+    <Content Include="Views\Proizvodi\Create.cshtml" />
+    <Content Include="Views\Proizvodi\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Drzave\" />
-    <Folder Include="Views\Gradovi\" />
-    <Folder Include="Views\Stavke\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

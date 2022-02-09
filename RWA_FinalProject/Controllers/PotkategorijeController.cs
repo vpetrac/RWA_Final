@@ -8,36 +8,31 @@ using System.Web.Mvc;
 
 namespace RWA_FinalProject.Controllers
 {
-    public class KategorijeController : Controller
+    public class PotkategorijeController : Controller
     {
-        // GET: Kategorije
+        // GET: Potkategorije
         public ActionResult Index()
         {
-            var model = Repo.GetKategorije();
+            var model = Repo.GetPotkategorije();
             return View(model);
         }
 
-        // GET: Kategorije/Details/5
-        public ActionResult Details(int id)
-        {
-            VMKategorijePotkategorije vMKategorijePotkategorije = new VMKategorijePotkategorije(id);
-            return View(vMKategorijePotkategorije);
-        }
-
-        // GET: Kategorije/Create
+        
+        // GET: Potkategorije/Create
         public ActionResult Create()
         {
+            ViewBag.kategorije = Repo.GetKategorije();
             return View();
         }
 
-        // POST: Kategorije/Create
+        // POST: Potkategorije/Create
         [HttpPost]
-        public ActionResult Create(Kategorija kategorija)
+        public ActionResult Create(FormCollection collection)
         {
             try
             {
                 // TODO: Add insert logic here
-                Repo.CreateKategorija(kategorija);
+
                 return RedirectToAction("Index");
             }
             catch
@@ -46,37 +41,35 @@ namespace RWA_FinalProject.Controllers
             }
         }
 
-        // GET: Kategorije/Edit/5
+        // GET: Potkategorije/Edit/5
         public ActionResult Edit(int id)
         {
-            var model = Repo.GetKategorija(id);
-            return View(model);
+            return View();
         }
 
-        // POST: Kategorije/Edit/5
+        // POST: Potkategorije/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, Kategorija kategorija)
+        public ActionResult Edit(int id, FormCollection collection)
         {
-            
-            if (ModelState.IsValid)
+            try
             {
-                Repo.UpdateKategorija(kategorija);
+                // TODO: Add update logic here
+
                 return RedirectToAction("Index");
             }
-            else
+            catch
             {
-                return View(kategorija);
+                return View();
             }
         }
 
-        // GET: Kategorije/Delete/5
+        // GET: Potkategorije/Delete/5
         public ActionResult Delete(int id)
         {
-            var model = Repo.GetKategorija(id);
-            return View(model);
+            return View();
         }
 
-        // POST: Kategorije/Delete/5
+        // POST: Potkategorije/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

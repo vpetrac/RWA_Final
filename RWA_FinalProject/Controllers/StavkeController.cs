@@ -1,5 +1,4 @@
-﻿using RWA_FinalProject.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,28 +6,16 @@ using System.Web.Mvc;
 
 namespace RWA_FinalProject.Controllers
 {
-    public class ManageKategorijeController : Controller
+    public class StavkeController : Controller
     {
-        // GET: Kategorije
-        public ActionResult List()
-        {
-            
-            return View(Repo.GetKategorije());
-        }
 
-        // GET: Kategorije/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Kategorije/Create
+        // GET: Stavke/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Kategorije/Create
+        // POST: Stavke/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -44,13 +31,13 @@ namespace RWA_FinalProject.Controllers
             }
         }
 
-        // GET: Kategorije/Edit/5
+        // GET: Stavke/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Kategorije/Edit/5
+        // POST: Stavke/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -66,13 +53,13 @@ namespace RWA_FinalProject.Controllers
             }
         }
 
-        // GET: Kategorije/Delete/5
+        // GET: Stavke/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Kategorije/Delete/5
+        // POST: Stavke/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

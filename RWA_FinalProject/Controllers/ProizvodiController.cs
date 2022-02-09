@@ -12,7 +12,6 @@ namespace RWA_FinalProject.Controllers
         // GET: Proizvodi
         public ActionResult Index()
         {
-
             var model = Repo.GetProizvodi();
             return View(model);
         }
@@ -20,9 +19,8 @@ namespace RWA_FinalProject.Controllers
         // GET: Proizvodi/Details/5
         public ActionResult Details(int id)
         {
-            //sql impl
-            var model = Repo.GetProizvod();
-            return View();
+            var model = Repo.GetProizvod(id);
+            return View(model);
         }
 
         // GET: Proizvodi/Create

@@ -28,10 +28,10 @@
                             Trgovina
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Stavke</a>
+                            @Html.ActionLink("Proizvodi", "Index", "Proizvodi", null, new { @class = "dropdown-item" })
                             <div class="dropdown-divider"></div>
                             @Html.ActionLink("Kategorije", "Index", "Kategorije", null, new { @class = "dropdown-item" })
-                            <a class="dropdown-item" href="#">Potkategorije</a>
+
                         </div>
                     </li>
 

@@ -1,7 +1,8 @@
 ﻿@model RWA_FinalProject.Models.vm.VMRacunStavke
 
 @{
-    ViewBag.Title = "Detalji";
+    ViewBag.Title = "Prikaz";
+    var proizvodi = ViewBag.proizvodi as IEnumerable<RWA_FinalProject.Models.Proizvod>;
 }
 
 <h2>Detalji</h2>
@@ -70,7 +71,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Stavke.First().IDStavka)
         </th>
-    
+        <th>
+            Proizvod
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Stavke.First().Kolicina)
         </th>
@@ -91,6 +94,9 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.IDStavka)
+            </td>
+            <td>
+                @Html.Display((proizvodi.Where(p => p.IDProizvod == item.ProizvodId)).ToString())
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Kolicina)

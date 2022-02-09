@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RWA_FinalProject.Models
 {
-    public class Podkategorija
+    public class Potkategorija
     {
         public int IDPotkategorija { get; set; }
         [Required(ErrorMessage = "Naziv kategorije je obvezan")]

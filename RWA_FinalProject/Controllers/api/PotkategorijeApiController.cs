@@ -8,7 +8,7 @@ using System.Web.Http;
 
 namespace RWA_FinalProject.Controllers
 {
-    public class PotkategorijeController : ApiController
+    public class PotkategorijeApiController : ApiController
     {
 
 

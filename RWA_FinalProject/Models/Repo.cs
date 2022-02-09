@@ -31,11 +31,6 @@ namespace RWA_FinalProject.Models
 
         }
 
-        internal static object GetProizvod()
-        {
-            throw new NotImplementedException();
-        }
-
         public static Kupac GetKupac(int IDKupac)
         {
             return GetKupci().Single(k => k.IDKupac == IDKupac);
@@ -121,13 +116,13 @@ namespace RWA_FinalProject.Models
 
         }
 
-        public static IEnumerable<Podkategorija> GetPotkategorije()
+        public static IEnumerable<Potkategorija> GetPotkategorije()
         {
 
             ds = SqlHelper.ExecuteDataset(cs, "GetPotkategorije");
             foreach (DataRow row in ds.Tables[0].Rows)
             {
-                yield return new Podkategorija
+                yield return new Potkategorija
                 {
                     IDPotkategorija = (int)row["IDPotkategorija"],
                     KategorijaID = row["KategorijaID"] != DBNull.Value ? (int)row["KategorijaID"] : 0,
@@ -137,12 +132,12 @@ namespace RWA_FinalProject.Models
             
         }
 
-        public static Podkategorija GetPotkategorija(int id)
+        public static Potkategorija GetPotkategorija(int id)
         {
             ds = SqlHelper.ExecuteDataset(cs, "GetPotkategorija",id);
             DataRow row = ds.Tables[0].Rows[0];
 
-            return new Podkategorija
+            return new Potkategorija
             {
                 IDPotkategorija = (int)row["IDPotkategorija"],
                 KategorijaID = row["KategorijaID"] != DBNull.Value ? (int)row["KategorijaID"] : 0,
@@ -150,12 +145,12 @@ namespace RWA_FinalProject.Models
             };
         }
 
-        public static int UpdatePotkategorija(Podkategorija potkategorija)
+        public static int UpdatePotkategorija(Potkategorija potkategorija)
         {
             return SqlHelper.ExecuteNonQuery(cs, "UpdatePotkategorija", potkategorija.IDPotkategorija, potkategorija.Naziv,potkategorija.KategorijaID);
         }
 
-        public static int CreatePotkategorija(Podkategorija potkategorija)
+        public static int CreatePotkategorija(Potkategorija potkategorija)
         {
             return SqlHelper.ExecuteNonQuery(cs, "CreatePotkategorija", potkategorija.Naziv, potkategorija.KategorijaID);
         }
@@ -218,12 +213,8 @@ namespace RWA_FinalProject.Models
                     CijenaPoKomadu = (decimal)row["CijenaPoKomadu"],
                     PopustUPostotcima = (decimal)row["PopustUPostocima"],
                     UkupnaCijena = (decimal)row["UkupnaCijena"],
-                    Proizvod = new Proizvod
-                    {
-                        Naziv = row["Naziv"].ToString(),
-                        Boja = row["Boja"] != DBNull.Value ? row["Boja"].ToString() : "/",
-                        CijenaBezPDV = (decimal)row["CijenaBezPDV"]
-                    }
+                    ProizvodId = (int)row["ProizvodID"]
+                    
                 };
             }
         }
@@ -241,9 +232,27 @@ namespace RWA_FinalProject.Models
                     Boja = row["Boja"] != DBNull.Value ? row["Boja"].ToString() : "/",
                     MinimalnaKolicinaNaSkladistu = (short)row["MinimalnaKolicinaNaSkladistu"],
                     CijenaBezPDV = (decimal)row["CijenaBezPDV"],
-                    Podkategorija = row["PotkategorijaID"] != DBNull.Value ? new Podkategorija { IDPotkategorija = (int)row["PotkategorijaID"], Naziv = row["PotkategorijaNaziv"].ToString() } : new Podkategorija {IDPotkategorija = -1, Naziv="/"},
+                    Podkategorija = row["PotkategorijaID"] != DBNull.Value ? new Potkategorija { IDPotkategorija = (int)row["PotkategorijaID"], Naziv = row["PotkategorijaNaziv"].ToString() } : new Potkategorija {IDPotkategorija = -1, Naziv="/"},
                 };
             }
+        }
+
+        public static Proizvod GetProizvod(int id)
+        {
+            ds = SqlHelper.ExecuteDataset(cs, "GetProizvod",id);
+            DataRow row = ds.Tables[0].Rows[0];
+            
+                return new Proizvod
+                {
+                    IDProizvod = (int)row["IDProizvod"],
+                    Naziv = row["Naziv"].ToString(),
+                    BrojProizvoda = row["BrojProizvoda"].ToString(),
+                    Boja = row["Boja"] != DBNull.Value ? row["Boja"].ToString() : "/",
+                    MinimalnaKolicinaNaSkladistu = (short)row["MinimalnaKolicinaNaSkladistu"],
+                    CijenaBezPDV = (decimal)row["CijenaBezPDV"],
+                    Podkategorija = row["PotkategorijaID"] != DBNull.Value ? new Potkategorija { IDPotkategorija = (int)row["PotkategorijaID"], Naziv = row["PotkategorijaNaziv"].ToString() } : new Potkategorija { IDPotkategorija = -1, Naziv = "/" },
+                };
+            
         }
 
     }

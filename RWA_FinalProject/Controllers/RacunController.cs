@@ -21,6 +21,7 @@ namespace RWA_FinalProject.Controllers
         public ActionResult Detalji(int id)
         {
             VMRacunStavke racunStavke = new VMRacunStavke(id);
+            ViewBag.proizvodi = Repo.GetProizvodi();
             return View(racunStavke);
             
         }

@@ -10,7 +10,7 @@ namespace RWA_FinalProject.Models
         public int IDStavka { get; set; }
         public int RacunID { get; set; }
         public short Kolicina { get; set; }
-        public Proizvod Proizvod { get; set; }
+        public int ProizvodId { get; set; }
         public decimal CijenaPoKomadu { get; set; }
         public decimal PopustUPostotcima { get; set; }
         public decimal UkupnaCijena { get; set; }
