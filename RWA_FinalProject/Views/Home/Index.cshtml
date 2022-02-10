@@ -71,37 +71,8 @@
         const table = $('.table')
             .DataTable(dataTableConfig);
 
-        /*
-        let btnDelete;
+        
 
-        const table = $('.table')
-            .DataTable(dataTableConfig)
-            .on('click', '.btn', onDeleteClick);
-
-        function onDeleteClick(e) {
-            btnDelete = this;
-            const { id, ime, prezime } = btnDelete.dataset;
-
-            if (confirm(`Obrisati ${ime} ${prezime}`))
-                deleteKupac(id);
-        }
-
-
-        function deleteKupac(id) {
-            $.ajax({
-                url: `api/kupci/${id}`,
-                method: 'delete'
-            })
-                .done(function (message) {
-                    console.log(message)
-                    table
-                        .row($(btnDelete).parents('tr'))
-                        .remove()
-                        .draw();
-                })
-                .fail(function () {
-                    console.log( `Kupac sa id ${id} nije obrisan` );
-                });
-        }*/
+        
     </script>
 }

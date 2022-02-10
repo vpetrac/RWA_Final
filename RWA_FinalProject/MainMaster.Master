@@ -1,0 +1,20 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MainMaster.master.cs" Inherits="RWA_FinalProject.MainMaster" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/GlobalHeads") %>
+        <%: Styles.Render("~/Content/Globals") %>
+    </asp:PlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>

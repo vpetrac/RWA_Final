@@ -31,6 +31,8 @@ namespace RWA_FinalProject.Models
 
         }
 
+        
+
         public static Kupac GetKupac(int IDKupac)
         {
             return GetKupci().Single(k => k.IDKupac == IDKupac);
@@ -134,7 +136,7 @@ namespace RWA_FinalProject.Models
 
         public static Potkategorija GetPotkategorija(int id)
         {
-            ds = SqlHelper.ExecuteDataset(cs, "GetPotkategorija",id);
+            ds = SqlHelper.ExecuteDataset(cs, "GetPodkategorija",id);
             DataRow row = ds.Tables[0].Rows[0];
 
             return new Potkategorija
@@ -147,17 +149,17 @@ namespace RWA_FinalProject.Models
 
         public static int UpdatePotkategorija(Potkategorija potkategorija)
         {
-            return SqlHelper.ExecuteNonQuery(cs, "UpdatePotkategorija", potkategorija.IDPotkategorija, potkategorija.Naziv,potkategorija.KategorijaID);
+            return SqlHelper.ExecuteNonQuery(cs, "UpdatePodkategorija", potkategorija.IDPotkategorija, potkategorija.Naziv,potkategorija.KategorijaID);
         }
 
         public static int CreatePotkategorija(Potkategorija potkategorija)
         {
-            return SqlHelper.ExecuteNonQuery(cs, "CreatePotkategorija", potkategorija.Naziv, potkategorija.KategorijaID);
+            return SqlHelper.ExecuteNonQuery(cs, "CreatePodkategorija", potkategorija.Naziv, potkategorija.KategorijaID);
         }
 
         public static int DeletePotkategorija(int id)
         {
-            return SqlHelper.ExecuteNonQuery(cs, "DeletePotkategorija", id);
+            return SqlHelper.ExecuteNonQuery(cs, "DeletePodkategorija", id);
         }
 
         public static IEnumerable<Kategorija> GetKategorije()
@@ -232,7 +234,7 @@ namespace RWA_FinalProject.Models
                     Boja = row["Boja"] != DBNull.Value ? row["Boja"].ToString() : "/",
                     MinimalnaKolicinaNaSkladistu = (short)row["MinimalnaKolicinaNaSkladistu"],
                     CijenaBezPDV = (decimal)row["CijenaBezPDV"],
-                    Podkategorija = row["PotkategorijaID"] != DBNull.Value ? new Potkategorija { IDPotkategorija = (int)row["PotkategorijaID"], Naziv = row["PotkategorijaNaziv"].ToString() } : new Potkategorija {IDPotkategorija = -1, Naziv="/"},
+                    Podkategorija = row["PotkategorijaID"] != DBNull.Value ? new Potkategorija { IDPotkategorija = (int)row["PotkategorijaID"], Naziv = row["Naziv"].ToString() } : new Potkategorija {IDPotkategorija = -1, Naziv="/"},
                 };
             }
         }
@@ -250,9 +252,14 @@ namespace RWA_FinalProject.Models
                     Boja = row["Boja"] != DBNull.Value ? row["Boja"].ToString() : "/",
                     MinimalnaKolicinaNaSkladistu = (short)row["MinimalnaKolicinaNaSkladistu"],
                     CijenaBezPDV = (decimal)row["CijenaBezPDV"],
-                    Podkategorija = row["PotkategorijaID"] != DBNull.Value ? new Potkategorija { IDPotkategorija = (int)row["PotkategorijaID"], Naziv = row["PotkategorijaNaziv"].ToString() } : new Potkategorija { IDPotkategorija = -1, Naziv = "/" },
+                    Podkategorija = row["PotkategorijaID"] != DBNull.Value ? new Potkategorija { IDPotkategorija = (int)row["PotkategorijaID"], Naziv = row["Naziv"].ToString() } : new Potkategorija { IDPotkategorija = -1, Naziv = "/" },
                 };
             
+        }
+
+        public static int CreateProizvod(Proizvod proizvod)
+        {
+            return SqlHelper.ExecuteNonQuery(cs, "CreateProizvod", proizvod.Naziv, proizvod.BrojProizvoda, proizvod.Boja,proizvod.MinimalnaKolicinaNaSkladistu,proizvod.CijenaBezPDV, proizvod.Podkategorija.IDPotkategorija);
         }
 
     }

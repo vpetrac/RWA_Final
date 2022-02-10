@@ -11,6 +11,7 @@ namespace RWA_FinalProject.Models
         public int IDPotkategorija { get; set; }
         [Required(ErrorMessage = "Naziv kategorije je obvezan")]
         public string Naziv { get; set; }
+        [Required(ErrorMessage = "Obezan podatak")]
         public int KategorijaID { get; set; }
     }
 }

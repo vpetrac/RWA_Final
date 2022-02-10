@@ -11,6 +11,7 @@ namespace RWA_FinalProject.Controllers
     public class KategorijeController : Controller
     {
         // GET: Kategorije
+        
         public ActionResult Index()
         {
             var model = Repo.GetKategorije();

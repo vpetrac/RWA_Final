@@ -27,39 +27,41 @@ namespace RWA_FinalProject.Controllers
 
         // POST: Potkategorije/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Potkategorija potkategorija)
         {
             try
             {
                 // TODO: Add insert logic here
-
+                Repo.CreatePotkategorija(potkategorija);
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(potkategorija);
             }
         }
 
         // GET: Potkategorije/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var model = Repo.GetPotkategorija(id);
+            ViewBag.kategorije = Repo.GetKategorije();
+            return View(model);
         }
 
         // POST: Potkategorije/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Potkategorija potkategorija)
         {
             try
             {
                 // TODO: Add update logic here
-
+                Repo.UpdatePotkategorija(potkategorija);
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(potkategorija);
             }
         }
 
