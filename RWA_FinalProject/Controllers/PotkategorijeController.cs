@@ -51,7 +51,7 @@ namespace RWA_FinalProject.Controllers
 
         // POST: Potkategorije/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, Potkategorija potkategorija)
+        public ActionResult Edit(Potkategorija potkategorija)
         {
             try
             {

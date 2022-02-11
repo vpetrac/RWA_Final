@@ -12,19 +12,20 @@ namespace RWA_FinalProject.Controllers
     {
         // GET: Kategorije
         
+        [Authorize]
         public ActionResult Index()
         {
             var model = Repo.GetKategorije();
             return View(model);
         }
-
+        [Authorize]
         // GET: Kategorije/Details/5
         public ActionResult Details(int id)
         {
             VMKategorijePotkategorije vMKategorijePotkategorije = new VMKategorijePotkategorije(id);
             return View(vMKategorijePotkategorije);
         }
-
+        [Authorize]
         // GET: Kategorije/Create
         public ActionResult Create()
         {
@@ -39,14 +40,14 @@ namespace RWA_FinalProject.Controllers
             {
                 // TODO: Add insert logic here
                 Repo.CreateKategorija(kategorija);
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Kategorije");
             }
             catch
             {
                 return View();
             }
         }
-
+        [Authorize]
         // GET: Kategorije/Edit/5
         public ActionResult Edit(int id)
         {
@@ -62,34 +63,33 @@ namespace RWA_FinalProject.Controllers
             if (ModelState.IsValid)
             {
                 Repo.UpdateKategorija(kategorija);
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Kategorije");
             }
             else
             {
                 return View(kategorija);
             }
         }
-
+        [Authorize]
         // GET: Kategorije/Delete/5
         public ActionResult Delete(int id)
         {
             var model = Repo.GetKategorija(id);
             return View(model);
         }
-
+        [Authorize]
         // POST: Kategorije/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                Repo.DeleteKategorija(id);
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK, "Kategorija uspjesno obrisana");
             }
             catch
             {
-                return View();
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, "Kategorija nije obrisana");
             }
         }
     }

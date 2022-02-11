@@ -10,9 +10,14 @@ namespace RWA_FinalProject.Models
     {
         public int IDKomercijalist { get; set; }
         [Required(ErrorMessage = "Ime je obvezno")]
-        public int Ime { get; set; }
+        public string Ime { get; set; }
         [Required(ErrorMessage = "Prezime je obvezno")]
-        public int Prezime { get; set; }
+        public string Prezime { get; set; }
         public bool StalniZaposlenik { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Ime} {Prezime}";
+        }
     }
 }

@@ -34,8 +34,14 @@
                 { data: 'IDRacun' },
                 { data: 'DatumIzdavanja' },
                 { data: 'BrojRacuna' },
-                { data: 'KomercijalistID' },
-                { data: 'KreditnaKarticaID' },
+                {
+                    "data": "Komercijalist",
+                    "className": "left",
+                    "render": function (Komercijalist, type, meta) {
+                        return Komercijalist.Ime + " " + Komercijalist.Prezime;
+                    }
+                },
+                { data: 'KreditnaKartica.Tip' },
                 { data: 'Komentar' },
 
                 {

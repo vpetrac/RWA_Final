@@ -45,20 +45,31 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Racun.KreditnaKarticaID)
+            @Html.DisplayNameFor(model => model.Racun.Komercijalist)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Racun.KreditnaKarticaID)
-        </dd>
+            @{
+                var fullName = Model.Racun.Komercijalist.Ime + " " + Model.Racun.Komercijalist.Prezime;
+                @Html.DisplayFor(model => fullName)
+                
+             }
+
+            </dd>
+
+
 
         <dt>
-            @Html.DisplayNameFor(model => model.Racun.KomercijalistID)
+            @Html.DisplayNameFor(model => model.Racun.KreditnaKartica)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Racun.KomercijalistID)
+            @Html.DisplayFor(model => model.Racun.KreditnaKartica.Tip)
         </dd>
+
+
+
+
 
     </dl>
 </div>
@@ -96,6 +107,11 @@
                 @Html.DisplayFor(modelItem => item.IDStavka)
             </td>
             <td>
+                @{
+                    var proizvod = proizvodi.Where(p => p.IDProizvod == item.ProizvodId).First().Naziv;
+                    @Html.DisplayFor(model => proizvod)
+
+                }
                 @Html.Display((proizvodi.Where(p => p.IDProizvod == item.ProizvodId)).ToString())
             </td>
             <td>
@@ -110,14 +126,8 @@
             <td>
                 @Html.DisplayFor(modelItem => item.UkupnaCijena) kn
             </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
+            
         </tr>
     }
 
 </table>
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>

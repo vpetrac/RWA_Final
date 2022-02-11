@@ -16,7 +16,7 @@ namespace RWA_FinalProject.Controllers
         {
             return View();
         }
-
+        [Authorize]
         // GET: Racun/Detalji/5
         public ActionResult Detalji(int id)
         {
@@ -25,7 +25,7 @@ namespace RWA_FinalProject.Controllers
             return View(racunStavke);
             
         }
-
+        [Authorize]
         public ActionResult PremaKupcu(int id)
         {
             ViewBag.ID = id;

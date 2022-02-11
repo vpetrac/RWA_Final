@@ -192,7 +192,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\api\DrzaveController.cs" />
     <Compile Include="Controllers\api\GradoviController.cs" />
-    <Compile Include="Controllers\api\ProizvodiController.cs" />
+    <Compile Include="Controllers\api\ProizvodiApiController.cs" />
     <Compile Include="Controllers\api\StavkeRacunaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\api\KategorijeApiController.cs" />
@@ -207,12 +207,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="MainMaster.Master.cs">
-      <DependentUpon>MainMaster.Master</DependentUpon>
+    <Compile Include="Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MainMaster.Master.designer.cs">
-      <DependentUpon>MainMaster.Master</DependentUpon>
+    <Compile Include="Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPage.Master.cs">
+      <DependentUpon>MasterPage.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPage.Master.designer.cs">
+      <DependentUpon>MasterPage.Master</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202202100038031_Inital-Create.cs" />
     <Compile Include="Migrations\202202100038031_Inital-Create.Designer.cs">
@@ -418,6 +425,7 @@
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
+    <Content Include="Index.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -441,7 +449,7 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
-    <Content Include="MainMaster.Master" />
+    <Content Include="MasterPage.Master" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
@@ -655,6 +663,7 @@
     <Content Include="Views\Proizvodi\Details.cshtml" />
     <Content Include="Views\Potkategorije\Edit.cshtml" />
     <Content Include="Views\Proizvodi\Edit.cshtml" />
+    <Content Include="Views\Potkategorije\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

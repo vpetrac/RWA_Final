@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Details";
+    var potkategorije = ViewBag.potkategorije as IEnumerable<RWA_FinalProject.Models.Potkategorija>;
 }
 
 <h2>Details</h2>
@@ -56,6 +57,19 @@
 
         <dd>
             @Html.DisplayFor(model => model.CijenaBezPDV)
+        </dd>
+
+        <dt>
+            Potkategorija
+        </dt>
+
+        <dd>
+            @{
+                var potkategorija = potkategorije.Where(p => p.IDPotkategorija == Model.PodkategorijaId).First().Naziv;
+                if (potkategorija == null) { potkategorija = "/"; }
+                @Html.DisplayFor(model => potkategorija)
+
+            }
         </dd>
 
     </dl>

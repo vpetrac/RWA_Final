@@ -2,7 +2,9 @@
 
 @{
     ViewBag.Title = "Edit";
-    var kategorije = ViewBag.kategorije as IEnumerable<RWA_FinalProject.Models.Kategorija>;
+    IEnumerable<RWA_FinalProject.Models.Kategorija> kategorije = ViewBag.kategorije as IEnumerable<RWA_FinalProject.Models.Kategorija>;
+
+    SelectList ddlOpcije = new SelectList(items: kategorije, dataTextField: "Naziv", dataValueField: "IdKategorija");
 }
 
 <h2>Edit</h2>
@@ -11,41 +13,82 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-<div class="form-horizontal">
-    <h4>Potkategorija</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.IDPotkategorija)
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Naziv, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Naziv, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Naziv, "", new { @class = "text-danger" })
+    <div class="form-horizontal">
+        <h4>Potkategorija</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.IDPotkategorija)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Naziv, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Naziv, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Naziv, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.KategorijaID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.KategorijaID, selectList: ddlOpcije, htmlAttributes: new { @class = "form-control"})
+                @Html.ValidationMessageFor(model => model.KategorijaID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
         </div>
     </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.KategorijaID, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownListFor(model => model.KategorijaID, selectList: new SelectList(items: kategorije, dataTextField: "Naziv", dataValueField: "IdKategorija"), htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.KategorijaID, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" />
-        </div>
-    </div>
-</div>
 }
+
+<p id="info" style="color:red;margin:20px auto;"></p>
 
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
 
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $('form').submit(function (e) {
+            e.preventDefault();
+
+            if ($(e.target).valid()) {
+                console.log($(e.target).serializeArray());
+
+                const params = $(e.target).serializeArray();
+                const potkategorija = {};
+
+                for (item of params) {
+                    potkategorija[item.name] = item.value
+                }
+                console.log('potkategorija', potkategorija);
+
+                $.ajax({
+                    url: '@Url.Action(controllerName: "Potkategorije", actionName: "Edit")',
+                    data: potkategorija,
+                    method: 'post',
+                    statusCode: {
+                        200: function () {
+                            $('p#info').html('Podaci uspješno ažurirani.');
+                            $('p#info').css('color', 'green');
+                            setTimeout(function () {
+                                window.location = "/";
+                            }, 2000);
+                        },
+                        400: function () {
+                            $('p#info').html('Podaci nisu ažurirani.');
+                            $('p#info').css('color', 'red');
+                        }
+                    }
+                })
+            }
+        })
+    </script>
 }
+

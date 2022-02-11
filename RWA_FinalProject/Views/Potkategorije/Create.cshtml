@@ -8,15 +8,15 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Podkategorija</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.Naziv, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -48,4 +48,41 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-}
+
+    <script>
+        $('form').submit(function (e) {
+            e.preventDefault();
+
+            if ($(e.target).valid()) {
+                console.log($(e.target).serializeArray());
+
+                const params = $(e.target).serializeArray();
+                const potkategorija = {};
+
+                for (item of params) {
+                    potkategorija[item.name] = item.value
+                }
+                console.log('potkategorija', potkategorija);
+
+                $.ajax({
+                    url: '@Url.Action(controllerName: "Potkategorije", actionName: "Create")',
+                    data: potkategorija,
+                    method: 'post',
+                    statusCode: {
+                        200: function () {
+                            $('p#info').html('Podaci uspješno ažurirani.');
+                            $('p#info').css('color', 'green');
+                            setTimeout(function () {
+                                window.location = "/";
+                            }, 2000);
+                        },
+                        400: function () {
+                            $('p#info').html('Podaci nisu ažurirani.');
+                            $('p#info').css('color', 'red');
+                        }
+                    }
+                })
+            }
+        })
+    </script>
+}}

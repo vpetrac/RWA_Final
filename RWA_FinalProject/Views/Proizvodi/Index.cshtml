@@ -10,60 +10,102 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.IDProizvod)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Naziv)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BrojProizvoda)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Podkategorija)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Boja)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MinimalnaKolicinaNaSkladistu)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CijenaBezPDV)
-        </th>
-        <th></th>
-    </tr>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IDProizvod)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Naziv)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BrojProizvoda)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Boja)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MinimalnaKolicinaNaSkladistu)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CijenaBezPDV)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IDProizvod)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Naziv)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BrojProizvoda)
+                </td>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.IDProizvod)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Naziv)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.BrojProizvoda)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Podkategorija.Naziv)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Boja)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.MinimalnaKolicinaNaSkladistu)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.CijenaBezPDV)
-    </td>
-    <td>
-        @Html.ActionLink("Edit", "Edit", new {  id=item.IDProizvod }) |
-        @Html.ActionLink("Details", "Details", new {  id= item.IDProizvod }) |
-        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-    </td>
-</tr>
-}
-
+                <td>
+                    @Html.DisplayFor(modelItem => item.Boja)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MinimalnaKolicinaNaSkladistu)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CijenaBezPDV)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.IDProizvod }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.IDProizvod }) |
+                    @Html.ActionLink(
+                   linkText: "Delete",
+                   actionName: "Delete",
+                   htmlAttributes: new
+                   {
+                       @class = "btn btn-danger btn-sm",
+                       data_id = item.IDProizvod,
+                       data_name = item.Naziv
+                   },
+                   routeValues: new { id = item.IDProizvod })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+
+@section Scripts {
+
+    <script>
+        $('.btn-danger').on('click',function (e) {
+            e.preventDefault();
+            const { name, id } = this.dataset;
+
+            if (confirm(`Obrisati proizvod ${name}`)) {
+                $.ajax({
+                    url: '@Url.Action(controllerName: "Proizvodi", actionName: "Delete")',
+                    data: { id },
+                    statusCode: {
+                        200: function () {
+                            $('.table')
+                                .find(`[data-id=${id}]`)
+                                .parent('tr')
+                                .css("display", "none");
+                        },
+                        400: function () {
+                            console.log("Greska");
+                        }
+                    }
+                })
+                    .done(function (data) {
+                        console.log(data);
+                    })
+                    .fail(function (error) {
+                        console.log(eror);
+
+                    });
+            }
+        })
+    </script>
+}

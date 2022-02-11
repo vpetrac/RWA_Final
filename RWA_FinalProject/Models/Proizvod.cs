@@ -19,7 +19,7 @@ namespace RWA_FinalProject.Models
         public short MinimalnaKolicinaNaSkladistu { get; set; }
         public decimal CijenaBezPDV { get; set; }
         [Required(ErrorMessage = "Obezan podatak")]
-        public Potkategorija Podkategorija { get; set; }
+        public int PodkategorijaId { get; set; }
 
     }
 }

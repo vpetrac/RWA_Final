@@ -16,15 +16,25 @@ namespace RWA_FinalProject.Controllers.api
             var p = Repo.GetProizvodi();
             return Ok(p);
         }
-        /*
+        
         [HttpGet]
         public IHttpActionResult GetProizvod(int id)
         {
-            var p = Repo.GetProizvod(id);
-            if (p == null) return NotFound();
+            Proizvod p;
+            try
+            {
+                p = Repo.GetProizvod(id);
+            }
+            catch (Exception)
+            {
+
+                return NotFound();
+            }
+            
+
             return Ok(p);
         }
-
+        /*
         [HttpPost]
         public IHttpActionResult CreateKupac(Kupac kupac)
         {
@@ -32,18 +42,17 @@ namespace RWA_FinalProject.Controllers.api
             Repo.InsertKupac(kupac);
             return Ok(kupac);
         }
-
+        */
         [HttpPut]
-        public IHttpActionResult UpdateProizvod(int id, Proizvod proizvod)
+        public IHttpActionResult UpdateProizvod(Proizvod proizvod)
         {
             if (!ModelState.IsValid) return BadRequest();
-            var pFormDB = Repo.GetProizvod(id);
+            var pFormDB = Repo.GetProizvod(proizvod.IDProizvod);
             if (pFormDB == null) return NotFound();
-            proizvod.IDProizvod = id;
             Repo.UpdateProizvod(proizvod);
             return Ok("Proizvod uspjesno azuriran");
         }
-
+        
         [HttpDelete]
         public IHttpActionResult DeleteKupac(int id)
         {
@@ -51,6 +60,7 @@ namespace RWA_FinalProject.Controllers.api
             if (p == null) return NotFound();
             Repo.DeleteProizvod(id);
             return Ok("Proizvod uspjesno obrisan");
-        }*/
+        }
+        
     }
 }

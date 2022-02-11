@@ -12,8 +12,8 @@ namespace RWA_FinalProject.Models
         public DateTime DatumIzdavanja { get; set; }
         public string BrojRacuna { get; set; }
         public string Komentar { get; set; }
-        public int KreditnaKarticaID { get; set; }
-        public int KomercijalistID { get; set; }
+        public KreditnaKartica KreditnaKartica { get; set; }
+        public Komercijalist Komercijalist { get; set; }
 
     }
 }

@@ -33,10 +33,49 @@
     </div>
 }
 
+<p id="info" style="color:red;margin:20px auto;"></p>
+
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $('form').submit(function (e) {
+            e.preventDefault();
+
+            if ($(e.target).valid()) {
+                console.log($(e.target).serializeArray());
+
+                const params = $(e.target).serializeArray();
+                const kategorija = {};
+
+                for (item of params) {
+                    kategorija[item.name] = item.value
+                }
+                console.log('kategorija', kategorija);
+
+                $.ajax({
+                    url: '@Url.Action(controllerName: "Kategorije", actionName: "Edit")',
+                    data: kategorija,
+                    method: 'post',
+                    statusCode: {
+                        200: function () {
+                            $('p#info').html('Podaci uspješno ažurirani.');
+                            $('p#info').css('color', 'green');
+                            setTimeout(function () {
+                                window.location = "/";
+                            }, 1000);
+                        },
+                        400: function () {
+                            $('p#info').html('Podaci nisu ažurirani.');
+                            $('p#info').css('color', 'red');
+                        }
+                    }
+                })
+            }
+        })
+    </script>
 }

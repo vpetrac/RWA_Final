@@ -10,6 +10,7 @@ namespace RWA_FinalProject.Controllers
     public class ProizvodiController : Controller
     {
         // GET: Proizvodi
+        [Authorize]
         public ActionResult Index()
         {
             var model = Repo.GetProizvodi();
@@ -17,15 +18,19 @@ namespace RWA_FinalProject.Controllers
         }
 
         // GET: Proizvodi/Details/5
+        [Authorize]
         public ActionResult Details(int id)
         {
             var model = Repo.GetProizvod(id);
+            ViewBag.potkategorije = Repo.GetPotkategorije();
             return View(model);
         }
 
         // GET: Proizvodi/Create
+        [Authorize]
         public ActionResult Create()
         {
+            ViewBag.potkategorije = Repo.GetPotkategorije();
             return View();
         }
 
@@ -37,7 +42,7 @@ namespace RWA_FinalProject.Controllers
             {
                 // TODO: Add insert logic here
                 Repo.CreateProizvod(proizvod);
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Proizvodi");
             }
             catch
             {
@@ -46,47 +51,41 @@ namespace RWA_FinalProject.Controllers
         }
 
         // GET: Proizvodi/Edit/5
+        [Authorize]
         public ActionResult Edit(int id)
         {
             var model = Repo.GetProizvod(id);
+            ViewBag.potkategorije = Repo.GetPotkategorije();
             return View(model);
         }
 
         // POST: Proizvodi/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Proizvod proizvod)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-                
-                return RedirectToAction("Index");
+                Repo.UpdateProizvod(proizvod);
+                return RedirectToAction("Index","Proizvodi") ;
             }
-            catch
+            else
             {
-                return View();
+                return View(proizvod);
             }
         }
 
-        // GET: Proizvodi/Delete/5
+
         public ActionResult Delete(int id)
         {
-            return View();
-        }
-
-        // POST: Proizvodi/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                Repo.DeleteProizvod(id);
+                //return Json(new { message = "Proizvod uspješno obrisan" }, JsonRequestBehavior.AllowGet);
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
             }
             catch
             {
-                return View();
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, "Proizvod nije obrisan.");
             }
         }
     }
