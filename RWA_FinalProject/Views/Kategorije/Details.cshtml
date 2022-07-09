@@ -49,7 +49,7 @@
 
     @foreach (var item in Model.Podkategorije)
     {
-        <tr>
+        <tr id="@item.IDPotkategorija">
             <td>
                 @Html.DisplayFor(modelItem => item.IDPotkategorija)
             </td>
@@ -58,8 +58,18 @@
             </td>
 
             <td>
-                @Html.ActionLink("Edit", "Edit", "Potkategorije", new { id = item.IDPotkategorija }, new { @class = "btn btn-primary btn-sm" }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Edit", "Edit","Potkategorije", new { id = item.IDPotkategorija }) |
+                @Html.ActionLink(
+               linkText: "Delete",
+               actionName: "Delete",
+               controllerName: "Potkategorije",
+               htmlAttributes: new
+               {
+                   @class = "btn btn-danger btn-sm",
+                   data_id = item.IDPotkategorija,
+                   data_name = item.Naziv
+               },
+               routeValues: new { id = item.IDPotkategorija })
             </td>
         </tr>
     }
@@ -68,4 +78,37 @@
 <p>
     @Html.ActionLink("Create", "Create", "Potkategorije", new { id = Model.kategorija.IDKategorija }, new { @class = "btn btn-primary btn-sm" })
 </p>
+
+
+@section Scripts {
+
+    <script>
+        $('.btn-danger').on('click',function (e) {
+            e.preventDefault();
+            const { id, name } = this.dataset;
+
+            if (confirm(`Obrisati potkategoriju ${name}`)) {
+                $.ajax({
+                    url: '@Url.Action(controllerName: "Potkategorije", actionName: "Delete")',
+                    data: { id },
+                    statusCode: {
+                        200: function () {
+                            $(`#${id}`).hide(500);
+                        },
+                        400: function () {
+                            console.log("Greska");
+                        }
+                    }
+                })
+                    .done(function (data) {
+                        console.log(data);
+                    })
+                    .fail(function (error) {
+                        console.log(eror);
+
+                    });
+            }
+        })
+    </script>
+}
 

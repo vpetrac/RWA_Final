@@ -14,20 +14,63 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.IDKategorija)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Naziv)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new {  id=item.IDKategorija  }) |
-            @Html.ActionLink("Details", "Details", new {  id=item.IDKategorija  }) |
-            @Html.ActionLink("Delete", "Delete", new {  id=item.IDKategorija  })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr id="@item.IDKategorija">
+            <td>
+                @Html.DisplayFor(modelItem => item.IDKategorija)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Naziv)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.IDKategorija }) |
+                @Html.ActionLink("Details", "Details", new { id = item.IDKategorija }) |
+                @Html.ActionLink(
+               linkText: "Delete",
+               actionName: "Delete",
+               htmlAttributes: new
+               {
+                   @class = "btn btn-danger btn-sm",
+                   data_id = item.IDKategorija,
+                   data_name = item.Naziv
+               },
+               routeValues: new { id = item.IDKategorija })
+            </td>
+        </tr>
+    }
 
 </table>
+
+
+@section Scripts {
+
+    <script>
+        $('.btn-danger').on('click',function (e) {
+            e.preventDefault();
+            const { id, name } = this.dataset;
+
+            if (confirm(`Obrisati kategoriju ${name}`)) {
+                $.ajax({
+                    url: '@Url.Action(controllerName: "Kategorije", actionName: "Delete")',
+                    data: { id },
+                    statusCode: {
+                        200: function () {
+                            $(`#${id}`).hide(500);
+                        },
+                        400: function () {
+                            console.log("Greska");
+                        }
+                    }
+                })
+                    .done(function (data) {
+                        console.log(data);
+                    })
+                    .fail(function (error) {
+                        console.log(eror);
+
+                    });
+            }
+        })
+    </script>
+}

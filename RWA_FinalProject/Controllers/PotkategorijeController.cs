@@ -11,20 +11,21 @@ namespace RWA_FinalProject.Controllers
     public class PotkategorijeController : Controller
     {
         // GET: Potkategorije
+        [Authorize]
         public ActionResult Index()
         {
             var model = Repo.GetPotkategorije();
             return View(model);
         }
 
-        
+        [Authorize]
         // GET: Potkategorije/Create
         public ActionResult Create()
         {
             ViewBag.kategorije = Repo.GetKategorije();
             return View();
         }
-
+        
         // POST: Potkategorije/Create
         [HttpPost]
         public ActionResult Create(Potkategorija potkategorija)
@@ -33,14 +34,14 @@ namespace RWA_FinalProject.Controllers
             {
                 // TODO: Add insert logic here
                 Repo.CreatePotkategorija(potkategorija);
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Kategorije");
             }
             catch
             {
                 return View(potkategorija);
             }
         }
-
+        [Authorize]
         // GET: Potkategorije/Edit/5
         public ActionResult Edit(int id)
         {
@@ -48,7 +49,7 @@ namespace RWA_FinalProject.Controllers
             ViewBag.kategorije = Repo.GetKategorije();
             return View(model);
         }
-
+        
         // POST: Potkategorije/Edit/5
         [HttpPost]
         public ActionResult Edit(Potkategorija potkategorija)
@@ -57,7 +58,7 @@ namespace RWA_FinalProject.Controllers
             {
                 // TODO: Add update logic here
                 Repo.UpdatePotkategorija(potkategorija);
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Kategorije");
             }
             catch
             {
@@ -65,25 +66,19 @@ namespace RWA_FinalProject.Controllers
             }
         }
 
-        // GET: Potkategorije/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
+       
         // POST: Potkategorije/Delete/5
-        [HttpPost]
+      
         public ActionResult Delete(int id, FormCollection collection)
         {
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                Repo.DeletePotkategorija(id);
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK, "Potkategorija uspjesno obrisana");
             }
             catch
             {
-                return View();
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, "Potkategorija nije obrisana");
             }
         }
     }

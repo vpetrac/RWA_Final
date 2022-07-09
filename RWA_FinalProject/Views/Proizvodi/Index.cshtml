@@ -36,7 +36,7 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
+            <tr id="@item.IDProizvod">
                 <td>
                     @Html.DisplayFor(modelItem => item.IDProizvod)
                 </td>
@@ -88,10 +88,7 @@
                     data: { id },
                     statusCode: {
                         200: function () {
-                            $('.table')
-                                .find(`[data-id=${id}]`)
-                                .parent('tr')
-                                .css("display", "none");
+                            $(`#${id}`).hide(500);
                         },
                         400: function () {
                             console.log("Greska");

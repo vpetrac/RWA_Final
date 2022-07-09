@@ -169,7 +169,7 @@ namespace RWA_FinalProject.Models
 
         public static int CreatePotkategorija(Potkategorija potkategorija)
         {
-            return SqlHelper.ExecuteNonQuery(cs, "CreatePodkategorija", potkategorija.Naziv, potkategorija.KategorijaID);
+            return SqlHelper.ExecuteNonQuery(cs, "InsertPodkategorija", potkategorija.Naziv, potkategorija.KategorijaID);
         }
 
         public static int DeletePotkategorija(int id)

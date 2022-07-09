@@ -23,22 +23,67 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.IDPotkategorija)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Naziv)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.KategorijaID)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new {  id=item.IDPotkategorija  }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr id="@item.IDPotkategorija">
+            <td>
+                @Html.DisplayFor(modelItem => item.IDPotkategorija)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Naziv)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KategorijaID)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.IDPotkategorija }) |
+                @Html.ActionLink(
+               linkText: "Delete",
+               actionName: "Delete",
+               controllerName: "Potkategorije",
+               htmlAttributes: new
+               {
+                   @class = "btn btn-danger btn-sm",
+                   data_id = item.IDPotkategorija,
+                   data_name = item.Naziv
+               },
+               routeValues: new { id = item.IDPotkategorija })
+            </td>
+        </tr>
+    }
 
 </table>
+
+
+@section Scripts {
+
+    <script>
+        $('.btn-danger').on('click',function (e) {
+            e.preventDefault();
+            const { id, name } = this.dataset;
+
+            if (confirm(`Obrisati potkategoriju ${name}`)) {
+                $.ajax({
+                    url: '@Url.Action(controllerName: "Potkategorije", actionName: "Delete")',
+                    data: { id },
+                    method: 'post',
+                    statusCode: {
+                        200: function () {
+                            $(`#${id}`).hide(500);
+                        },
+                        400: function () {
+                            console.log("Greska");
+                        }
+                    }
+                })
+                    .done(function (data) {
+                        console.log(data);
+                    })
+                    .fail(function (error) {
+                        console.log(eror);
+
+                    });
+            }
+        })
+    </script>
+}

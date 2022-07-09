@@ -37,8 +37,7 @@
                 </ul>
                 <div class="form-inline my-2 my-lg-0">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/Account/Register" id="registerLink">Register</a></li>
-                        <li><a href="/Account/Login" id="loginLink">Log in</a></li>
+                        Hi user
                     </ul>
                 </div>
             </div>

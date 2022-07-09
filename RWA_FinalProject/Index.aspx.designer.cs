@@ -42,6 +42,15 @@ namespace RWA_FinalProject
         protected global::System.Web.UI.WebControls.DropDownList filter_country;
 
         /// <summary>
+        /// SqlDataSourceCountries control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceCountries;
+
+        /// <summary>
         /// filter_city control.
         /// </summary>
         /// <remarks>
@@ -49,6 +58,15 @@ namespace RWA_FinalProject
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList filter_city;
+
+        /// <summary>
+        /// SqlDataSourceCities control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceCities;
 
         /// <summary>
         /// filter_size control.

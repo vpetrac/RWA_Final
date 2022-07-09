@@ -70,16 +70,9 @@ namespace RWA_FinalProject.Controllers
                 return View(kategorija);
             }
         }
-        [Authorize]
-        // GET: Kategorije/Delete/5
-        public ActionResult Delete(int id)
-        {
-            var model = Repo.GetKategorija(id);
-            return View(model);
-        }
-        [Authorize]
+
+        
         // POST: Kategorije/Delete/5
-        [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
             try

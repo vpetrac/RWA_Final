@@ -8,7 +8,7 @@ namespace RWA_FinalProject.Controllers
 {
     public class HomeController : Controller
     {
-        [Route("index")]
+        [Authorize]
         public ActionResult Index()
         {
             return View();
